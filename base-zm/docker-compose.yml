@@ -31,6 +31,7 @@ services:
       - ./zm/config:/config
       - ./zm/log:/log
       - ./html/live.html:/var/www/html/live.html
+      - ./html/small.html:/var/www/html/small.html
       - type: tmpfs
         target: /dev/shm
         tmpfs:
