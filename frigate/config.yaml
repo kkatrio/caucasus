@@ -1,0 +1,141 @@
+version: 0.14
+
+mqtt:
+  enabled: true
+  host: 192.168.1.22:1883
+
+cameras:
+  mpros:
+    enabled: true
+    ffmpeg:
+      inputs:
+        - path: rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.208:554/Streaming/Channels/101
+          roles:
+            - detect
+    detect:
+      enabled: false # <---- disable detection until you have a working camera feed
+      width: 1920
+      height: 1080
+    webui_url: test
+  pisw:
+    enabled: true
+    ffmpeg:
+      inputs:
+        - path: rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.201:554/Streaming/Channels/101
+          roles:
+            - detect
+    detect:
+      enabled: false # <---- disable detection until you have a working camera feed
+      width: 1280
+      height: 720
+  porta:
+    enabled: true
+    ffmpeg:
+      inputs:
+        - path: rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.202:554/Streaming/Channels/101
+          roles:
+            - detect
+    detect:
+      enabled: false # <---- disable detection until you have a working camera feed
+      width: 1280
+      height: 720
+  voreia-eisodos:
+    enabled: true
+    ffmpeg:
+      inputs:
+        - path: rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.205:554/Streaming/Channels/101
+          roles:
+            - detect
+    detect:
+      enabled: false # <---- disable detection until you have a working camera feed
+      width: 1280
+      height: 720
+  deuteri-porta:
+    enabled: true
+    ffmpeg:
+      inputs:
+        - path: rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.203:554/Streaming/Channels/101
+          roles:
+            - detect
+    detect:
+      enabled: false # <---- disable detection until you have a working camera feed
+      width: 1280
+      height: 720
+  peuko-garage:
+    enabled: true
+    ffmpeg:
+      inputs:
+        - path: rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.207:554/Streaming/Channels/101
+          roles:
+            - detect
+    detect:
+      enabled: false # <---- disable detection until you have a working camera feed
+      width: 1280
+      height: 720
+  anatolika:
+    enabled: true
+    ffmpeg:
+      inputs:
+        - path: rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.206:554/Streaming/Channels/101
+          roles:
+            - detect
+    detect:
+      enabled: false # <---- disable detection until you have a working camera feed
+      width: 1280
+      height: 720
+  varka:
+    enabled: true
+    ffmpeg:
+      inputs:
+        - path: rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.204:554/Streaming/Channels/101
+          roles:
+            - detect
+    detect:
+      enabled: false # <---- disable detection until you have a working camera feed
+      width: 1280
+      height: 720
+
+go2rtc:
+  streams:
+    mpros:
+      - rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.208:554/Streaming/Channels/101
+    pisw:
+      - rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.201:554/Streaming/Channels/101
+    porta:
+      - rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.202:554/Streaming/Channels/101
+    voreia-eisodos:
+      - rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.205:554/Streaming/Channels/101
+    deuteri-porta:
+      - rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.203:554/Streaming/Channels/101
+    peuko-garage:
+      - rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.207:554/Streaming/Channels/101
+    anatolika:
+      - rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.206:554/Streaming/Channels/101
+    varka:
+      - rtsp://{FRIGATE_RTSP_USER}:{FRIGATE_RTSP_PASSWORD}@192.168.1.204:554/Streaming/Channels/101
+  webrtc:
+    candidates:
+      - 192.168.1.18:8555
+      - stun:8555
+
+record:
+  enabled: true
+  retain:
+    days: 3
+    mode: all
+
+tls:
+  enabled: false
+camera_groups:
+  test:
+    order: 1
+    icon: LuAlignCenterHorizontal
+    cameras:
+      - anatolika
+      - deuteri-porta
+      - mpros
+      - peuko-garage
+      - pisw
+      - porta
+      - varka
+      - voreia-eisodos
