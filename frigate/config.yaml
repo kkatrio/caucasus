@@ -121,7 +121,7 @@ go2rtc:
 record:
   enabled: true
   retain:
-    days: 14
+    days: 20
     mode: all
 
 tls:

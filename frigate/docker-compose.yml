@@ -4,7 +4,7 @@ services:
     container_name: frigate
     restart: unless-stopped
     image: ghcr.io/blakeblackshear/frigate:stable
-    shm_size: "150mb"
+    shm_size: "900mb"
     volumes:
       - ./config:/config
       - ./config.yaml:/config/config.yaml
