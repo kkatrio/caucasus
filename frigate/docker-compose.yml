@@ -4,7 +4,7 @@ services:
     container_name: frigate
     restart: unless-stopped
     image: ghcr.io/blakeblackshear/frigate:stable
-    shm_size: "900mb"
+    shm_size: "1900mb"
     volumes:
       - ./config:/config
       - ./config.yaml:/config/config.yaml
@@ -13,6 +13,9 @@ services:
         target: /tmp/cache
         tmpfs:
           size: 1000000000
+    devices:
+      - /dev/dri/renderD128 # for intel hwaccel
+    privileged: true
     ports:
       - "8971:8971"
       - "8554:8554" # RTSP feeds
